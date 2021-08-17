@@ -1,1 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+html {
+    height: 100%;
+}
+
+body {
+    background: cadetblue;
+    height: 100%;
+}
+
+.p-card-title {
+    text-align: center;
+}
+
+.p-listbox {
+    margin: 4px;
+}
