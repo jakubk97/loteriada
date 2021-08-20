@@ -1,0 +1,9 @@
+jak budować na github pages? 
+
+ngh --dir dist/[PROJECTNAME] takes the specified build directory dist/[PROJECTNAME] and publishes it to the gh-pages branch (if not specified differently).
+However, when publishing to GH Pages under a subfolder you also need to set the base href accordingly at build time:
+
+ng build --prod --base-href=/[projectname]/
+
+Otherwise your browser will try to find the application bundles in the domain root and not in the subfolder. Note the leading and trailing slash, they are important.
+There is no need to set the base href when you deploy to a domain root without sub folder.
