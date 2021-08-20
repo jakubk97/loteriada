@@ -1,6 +1,10 @@
 # Loteriada
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.1.4.
+# Jak budować na github pages? 
+
+ng build --prod --base-href=/[projectname]/
+
+ngh --dir dist/[PROJECTNAME] 
 
 ## Development server
 
