@@ -19,7 +19,7 @@ export class AppComponent {
   randomPairs: { p1: Person, p2: Person }[] = []
 
   constructor(private primengConfig: PrimeNGConfig) {
-    this.persons = [{ name: "Kuba" }, { name: "Wiki" }]
+    this.persons = []
   }
 
   ngOnInit() {
@@ -27,7 +27,7 @@ export class AppComponent {
   }
 
   addPerson() {
-    this.persons = [...this.persons, { name: this.newPerson } as Person];
+    this.persons = [...this.persons, { name: this.newPerson.toUpperCase() } as Person];
     this.newPerson = '';
     this.randomPairs = [];
     this.selectedPerson = {} as Person;
@@ -42,25 +42,26 @@ export class AppComponent {
 
   losujPary() {
     this.randomPairs = [];
-    const collection = [...this.persons];
-    while (collection.length > 0) {
-      if (collection.length != 1) {
-        const number1 = Math.floor(Math.random() * (collection.length));
-        let number2 = number1;
-        while (number2 == number1) {
-          number2 = Math.floor(Math.random() * (collection.length));
-        }
-        const person1 = collection[number1]
-        const person2 = collection[number2]
-        this.randomPairs.push({ p1: person1, p2: person2 });
-        collection.splice(collection.indexOf(person1), 1);
-        collection.splice(collection.indexOf(person2), 1);
+    let collectionFrom = [...this.persons];
+    let collectionTo = [...this.persons];
+    while (collectionFrom.length > 0) {
+      const number1 = Math.floor(Math.random() * (collectionFrom.length));
+      let number2 = Math.floor(Math.random() * (collectionTo.length));
+      while (collectionFrom[number1].name == collectionTo[number2].name && collectionTo.length > 1) {
+        number2 = Math.floor(Math.random() * (collectionTo.length));
+      }
+      if (collectionFrom[number1].name == collectionTo[number2].name && this.persons.length > 1) {
+        this.randomPairs = [];
+        collectionFrom = [...this.persons];
+        collectionTo = [...this.persons];
       }
       else {
-        this.randomPairs.push({ p1: collection[0], p2: {} as Person });
-        collection.splice(0, 1);
+        const person1 = collectionFrom[number1];
+        const person2 = collectionTo[number2];
+        this.randomPairs.push({ p1: person1, p2: person2 });
+        collectionFrom.splice(collectionFrom.indexOf(person1), 1);
+        collectionTo.splice(collectionTo.indexOf(person2), 1);
       }
-
     }
 
     this.randomPairs = [...this.randomPairs];

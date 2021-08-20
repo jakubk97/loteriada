@@ -10,16 +10,8 @@
         <p style="text-align: center;"><button pButton type="button" label="Losuj pary" class="p-button-info" (click)="losujPary()" *ngIf="persons"></button></p>
         <ul>
             <li *ngFor="let item of randomPairs; let i = index">
-                {{i+1}}. {{item.p1.name}} {{item.p2.name ? "i" : ""}} {{item.p2.name}}
+                {{i+1}}. {{item.p1.name}} {{item.p2.name ? "kupuje prezent dla" : ""}} {{item.p2.name}}
             </li>
         </ul>
     </p-card>
-    <!-- <p-card header="Loteriada świąteczna" [style]="{'width': '25rem', 'margin-bottom': '2em'}">
-        <p style="text-align: center;"><button pButton type="button" label="Losuj pary" class="p-button-info" (click)="losujPary()" *ngIf="persons"></button></p>
-        <ul>
-            <li *ngFor="let item of randomPairs; let i = index">
-                {{i+1}}. {{item.p1.name}} {{item.p2.name ? "i" : ""}} {{item.p2.name}}
-            </li>
-        </ul>
-    </p-card> -->
 </div>
